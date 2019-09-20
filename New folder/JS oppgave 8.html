@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+    .stilig {
+            transform: translateY(40px)
+    }
+
+    .round {
+        border: 1px solid gray;
+        border-radius: 20px;
+        transition: all .5s ease-in-out;
+    }
+
+    .padding {
+        padding: 50px;
+        transition: all .5s ease-in-out;
+    }
+
+    .margin {
+        margin: 50px;
+        transition: all .5s ease-in-out;
+    }
+
+    .spin {
+        transition: all 1s ease-in-out;
+        transform: rotate(-360deg);
+    }
+
+    .border {
+        border: solid rgb(0, 0, 255);
+        transition: all .5s ease-in-out;
+    }
+
+    div.selected::before {
+        content: "🡆";
+    }
+
+    div.selected::after {
+        content: "🡄";
+    }
+
+    </style>
+</head>
+<body>
+    <p>Ferdighet 8 - Endre andre ting enn innerHTML: value, style</p>
+    <input id="text" type="text"/>
+    <h2 id="overskrift">Overskrift</h2>
+    <input type="checkbox" id="A" onclick="doSomethingA(this)"/>A
+    <input type="checkbox" id="B" onclick="doSomethingB(this)">B
+    <input type="checkbox" id="C" onclick="doSomethingC(this)">C
+    <input type="checkbox" id="D" onclick="doSomethingD(this)">D
+    <input type="checkbox" id="E" onclick="doSomethingE(this)">E
+
+    
+    <br>
+    <br><div id="div1" onclick="chooseDiv(this)"><input type="radio" name="radiobtn" id="radio1"/> bla bla</div>
+    
+
+    <br><div id="div2" onclick="chooseDiv(this)"><input type="radio" name="radiobtn" id="radio2"/> asdasdasd</div>
+
+
+    <script>
+        var textInput = document.getElementById('text');
+        var h2Element = document.getElementById('overskrift');
+        var div1 = document.getElementById('div1');
+        var div2 = document.getElementById('div2');
+        var qwe;
+        var B = document.getElementById('B');
+
+
+        chooseDiv();
+
+        function chooseDiv(selectedRadio) {
+            var asd = selectedRadio.id;
+            qwe = asd;
+            console.log("ny" , qwe);
+        }
+
+        function doSomethingA(checkbox) {
+            console.log(qwe);
+            qwe.classList.toggle('round', checkbox.checked);
+        }
+
+        function doSomethingB(checkbox) {
+            qwe.checked = chooseDiv.classList.contains('margin')
+            // bkg.checked = chosenDiv.classList.contains('bkg');
+        }
+
+        function doSomethingC(checkbox) {
+            div1.classList.toggle('padding', checkbox.checked);
+        }
+
+        function doSomethingD(checkbox) {
+            div1.classList.toggle('spin', checkbox.checked);
+        }
+
+        function doSomethingE(checkbox) {
+            div1.classList.toggle('border', checkbox.checked);
+        }
+    </script>
+</body>
+</html>

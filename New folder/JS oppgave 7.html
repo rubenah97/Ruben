@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Document</title>
+</head>
+<body>
+    <input type="range" id="widthSlider" min="0" max="1000" step="10" oninput="showDiv()">
+    <input type="range" id="heightSlider" min="0" max="1000" step="10" oninput="showDiv()" >
+    <br><input type="text" id="textInput" oninput="showdiv()" value="something" >
+    <select id="colorChooser" onchange="showDiv()">
+        <option value="green">Green</option>
+        <option selected value="yellow">Yellow</option>
+        <option value="teal">Teal</option>
+    
+    </select>
+
+    <div id="resultat"></div>
+    <div id="resultatHtml" style="font-family: monospace" ></div>
+
+    <script>
+        var widthSlider = document.getElementById('widthSlider');
+        var heightSlider = document.getElementById('heightSlider'); 
+        var resultatDiv = document.getElementById('resultat');
+        var resultatHtmlDiv = document.getElementById('resultatHtml');
+        var textInout = document.getElementById('textInout');
+        var colorChooser = document.getElementById('colorChooser');
+
+
+        showDiv();
+
+        function  showDiv() {
+            resultatDiv.innerHTML = '<div style="'
+                + 'background-color: ' + colorChooser.value + ';'
+                + 'width: ' + widthSlider.value + 'px;'
+                + 'height: ' + heightSlider.value + 'px;'
+                + '">'
+                + textInput.value + '</div>' + widthSlider.value * heightSlider.value;               
+            resultatHtmlDiv.innerText = resultatDiv.innerHTML;
+            
+            
+        }
+
+
+// Oppgave: Lag en slider for å velge bredde fra
+// 1 til 1000 og en slider for å velge høyde fra 1 til 1000.
+// Vis en div med valgt bredde og høyde - og legg inn tekst i
+// diven som viser arealet
+// (bredde*høyde) og omkretsen (2*bredde+2*høyde).
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+<head>
+	<title>Jada</title>
+	<style>
+		* {
+			background-color: cyan
+		}
+
+		.top {
+			margin: auto;
+			Padding: 10px;
+			border: solid red 2px;
+			width: 205px;
+			background-color: gold
+		}
+
+		.container {
+			display: grid;
+			grid-template-columns: 33% 33% 33%;
+			width: 250px;
+			margin: auto;
+			padding: auto;
+
+		}
+
+		.container>div {
+			padding: 10px;
+			color: black;
+			background-color: white;
+			margin: 10px;
+			border: solid red 2px;
+			width: 40px;
+			height: 40px;
+		}
+
+		.container>div:hover {
+			cursor: pointer
+		}
+	</style>
+</head>
+
+<body>
+	<h1 id="moves" class="top">Du har gjort 0 trekk</h1>
+	<div class="container">
+		<div id="r1k1" onclick="trykk(this, 'r1k2', 'r2k1')">4</div>
+		<div id="r1k2" onclick="trykk(this, 'r1k1', 'r1k3', 'r2k2')">7</div>
+		<div id="r1k3" onclick="trykk(this, 'r1k2', 'r2k3')">1</div>
+
+		<div id="r2k1" onclick="trykk(this, 'r1k1', 'r2k2', 'r3k1')">2</div>
+		<div id="r2k2" onclick="trykk(this, 'r1k2', 'r2k1', 'r2k3', 'r3k2')"></div>
+		<div id="r2k3" onclick="trykk(this, 'r1k3', 'r2k2', 'r3k3')">8</div>
+
+		<div id="r3k1" onclick="trykk(this, 'r2k1', 'r3k2',)">5</div>
+		<div id="r3k2" onclick="trykk(this, 'r2k2', 'r3k1', 'r3k3')">3</div>
+		<div id="r3k3" onclick="trykk(this, 'r2k3', 'r3k2')">6</div>
+	</div>
+	<script>
+		var teller = 0;
+		function trykk(element, alt1, alt2, alt3, alt4) {
+
+			if (document.getElementById(alt1).innerHTML == '') {
+				document.getElementById(alt1).innerHTML = element.innerHTML;
+				element.innerHTML = '';
+				teller++;
+			}
+
+			if (document.getElementById(alt2).innerHTML == '') {
+				document.getElementById(alt2).innerHTML = element.innerHTML;
+				element.innerHTML = '';
+				teller++;
+			}
+
+			if (alt3 != null) {
+				if (document.getElementById(alt3).innerHTML == '') {
+					document.getElementById(alt3).innerHTML = element.innerHTML;
+					element.innerHTML = '';
+					teller++;
+				}
+			}
+
+			if (alt4 != null) {
+				if (document.getElementById(alt4).innerHTML == '') {
+					document.getElementById(alt4).innerHTML = element.innerHTML;
+					element.innerHTML = '';
+					teller++;
+				}
+			}
+			if (document.getElementById('r1k1').innerHTML == '1') {
+				if (document.getElementById('r1k2').innerHTML == '2')
+					if (document.getElementById('r1k3').innerHTML == '3')
+						if (document.getElementById('r2k1').innerHTML == '4')
+							if (document.getElementById('r2k2').innerHTML == '5')
+								if (document.getElementById('r2k3').innerHTML == '6')
+									if (document.getElementById('r3k1').innerHTML == '7')
+										if (document.getElementById('r3k2').innerHTML == '8')
+											if (document.getElementById('r3k3').innerHTML == '')
+												alert('Du vant med ' + teller  + ' trekk');
+			}
+
+			document.getElementById('moves').innerHTML =
+				'Du har gjort ' + teller + ' trekk';
+		}
+	</script>
+</body>
+
+</html>

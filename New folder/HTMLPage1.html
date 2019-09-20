@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <style>
+        * {
+            background-color:red
+        }
+
+        .overskrift {
+            margin: auto;
+            padding: auto;
+            border: yellow 2px;
+            width: 245px;
+            background-color:orange
+        }
+
+        .divmaster {
+            display: grid;
+            grid-template-columns: 33% 33% 33%;
+            margin: auto;
+            padding: auto;
+            width: 350px;
+
+        }
+
+        .divmaster>div {
+            padding: 20px;
+            margin: 20px;
+            border: solid rgb(138, 65, 65) 2px;
+            background-color: darkkhaki;
+            width: 40px;
+            height: 40px;
+
+        }
+
+        .divmaster>div:hover {
+            cursor: pointer
+        }
+    </style>
+    <title>wuu</title>
+</head>
+
+<body>
+    <h1 id="moves" class="overskrift"> Du har gjort 0 trekk </h1>
+    <div class="divmaster">
+        <div id="r1k1" onclick="trykk(this, 'r1k2', 'r2k1')">7</div>
+        <div id="r1k2" onclick="trykk(this, 'r1k1', 'r1k3', 'r2k2')">2</div>
+        <div id="r1k3" onclick="trykk(this, 'r1k2', 'r2k3')">5</div>
+
+        <div id="r2k1" onclick="trykk(this, 'r1k1', 'r2k2', 'r3k1')">6</div>
+        <div id="r2k2" onclick="trykk(this, 'r1k2', 'r2k1', 'r2k3', 'r3k2')"></div>
+        <div id="r2k3" onclick="trykk(this, 'r1k3', 'r2k2', 'r3k3')">1</div>
+
+        <div id="r3k1" onclick="trykk(this, 'r2k1', 'r3k2')">8</div>
+        <div id="r3k2" onclick="trykk(this, 'r2k2', 'r3k1', 'r3k3')">4</div>
+        <div id="r3k3" onclick="trykk(this, 'r2k3', 'r3k2')">3</div>
+
+    </div>
+    <script>
+        var teller = 0;
+        function trykk(lens, alt1, alt2, alt3, alt4) {
+
+            if (document.getElementById(alt1).innerHTML == '') {
+                document.getElementById(alt1).innerHTML = lens.innerHTML;
+                lens.innerHTML = '';
+                teller++;
+            }
+            if (document.getElementById(alt2).innerHTML == '') {
+                document.getElementById(alt2).innerHTML = lens.innerHTML;
+                lens.innerHTML = '';
+                teller++;
+            }
+            if (alt3 != null) {
+                if (document.getElementById(alt3).innerHTML == '') {
+                    document.getElementById(alt3).innerHTML = lens.innerHTML;
+                    lens.innerHTML = '';
+                    teller++;
+                }
+            }
+            if (alt4 != null) {
+                if (document.getElementById(alt4).innerHTML == '') {
+                    document.getElementById(alt4).innerHTML = lens.innerHTML;
+                    lens.innerHTML = '';
+                    teller++;
+                }
+            }
+
+            if (
+                document.getElementById('r1k1').innerHTML == '1' &&
+                document.getElementById('r1k2').innerHTML == '2' &&
+                document.getElementById('r1k3').innerHTML == '3' &&
+                document.getElementById('r2k1').innerHTML == '4' &&
+                document.getElementById('r2k2').innerHTML == '5' &&
+                document.getElementById('r2k3').innerHTML == '6' &&
+                document.getElementById('r3k1').innerHTML == '7' &&
+                document.getElementById('r3k2').innerHTML == '8'
+            ) {
+                alert('You won with ' + teller + ' trekk');
+
+            }
+            document.getElementById('moves').innerHTML =
+                'Du har gjort ' + teller + ' trekk';
+        }
+
+
+    </script>
+</body>
+
+
+</html>

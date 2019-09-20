@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body { 
+        padding: 0;
+        margin: 0;
+    }
+    div.page {    var textInout = document.getElementById('textInout');
+
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 200px 3fr;
+        grid-template-rows: 20px 10fr 1fr;
+        grid-template-areas:'header header'
+                            'menu maincontent'
+                            'menu footer';
+    }
+    div.header{
+        background-color: blue;
+        grid-area: header;
+    }
+    div.menu {
+        background-color: green;
+        grid-area: menu;
+    }
+    div.maincontent {
+        background-color: yellow;
+        grid-area: maincontent;
+    }
+    div.footer {
+        background-color: red;
+        grid-area: footer;
+    }
+
+    @media only screen and (max-width: 600px) {
+        div.page {
+        grid-template-columns: 1fr;
+        grid-template-rows: 20px 1fr 4fr 1fr;
+        grid-template-areas:'header'
+                            'menu'
+                            'maincontent'
+                            'footer';
+    }
+
+</style>
+</style>
+<body>
+    <div class="page">
+        <div class="header">Header</div>
+        <div class="menu" >menu</div>
+        <div class="maincontent">MainContent</div>
+        <div class="footer">Footer</div>
+    </div>
+</body>
+</html>
