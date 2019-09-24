@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>KodeLås</title>
+    <style>
+    
+    .h1 {
+        margin: auto;
+        padding: auto;
+        width: 120px;
+       
+    }
+
+    .container {
+        margin: auto;
+        padding: auto;
+        width: 300px;
+        border: solid black;
+        height: 420px;
+    }
+
+    .container1 {
+        display: grid;
+		grid-template-columns: 33% 33% 33%;
+		width: 250px;
+		margin: auto;
+		padding: auto;
+    }
+
+    .container1>div {
+        padding: 10px;
+		color: black;
+		background-color: white;
+		margin: 10px;
+		border: solid black 2px;
+		width: 40px;
+		height: 40px;
+        cursor: pointer;
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 0;
+    }
+
+    #output {
+        padding: 15px;
+        margin: 15px;
+        width: 230px;
+        border: solid black;
+        height: 10px
+    }
+    
+    </style>
+</head>
+<body>
+    <h1 class="h1">KodeLås</h1>
+
+    <div class="container">
+        <div id="output"></div>
+
+        <div class="container1">
+            <div id="1" onclick="number(this)">1</div>
+            <div id="2" onclick="number(this)">2</div>
+            <div id="3" onclick="number(this)">3</div>
+            <div id="4" onclick="number(this)">4</div>
+            <div id="5" onclick="number(this)">5</div>
+            <div id="6" onclick="number(this)">6</div>
+            <div id="7" onclick="number(this)">7</div>
+            <div id="8" onclick="number(this)">8</div>
+            <div id="9" onclick="number(this)">9</div>
+            <div id="Clear" onclick="clearx()">Clear</div>
+            <div id="0" onclick="number(this)">0</div>
+            <div id="Enter" onclick="enter(this)">Enter</div>
+        </div>
+    </div>
+
+    <script>
+
+        var output = document.getElementById("output");
+        var tall = '';
+
+        function number(button) {
+            tall += button.innerHTML;
+            output.innerHTML = tall;
+        }
+
+        function clearx() {
+            tall = '';
+            console.log('asf');
+            output.innerHTML = '';
+
+        }
+
+        function enter() {
+            if (document.getElementById("output").innerHTML === '456') {
+                alert('open');
+            }
+            else {
+                alert('Wrong Combination')
+            }
+        }
+    </script>
+
+</body>
+</html>

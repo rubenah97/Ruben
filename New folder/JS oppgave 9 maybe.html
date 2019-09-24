@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <input type="range" id="sizeSlider1" min="0" max="400" step="10" value="100" oninput="showDiv()">
+    <input type="range" id="sizeSlider2" min="0" max="400" step="10" value="200" oninput="showDiv()" >
+    <br>
+    <br><div id="size"> </div>
+    <br>
+    <select id="colorChooser" onchange="showDiv()">
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+        <option selected value="royalblue">Blue</option>
+    
+    </select>
+    <br><br>
+    
+    <div id="diva"></div>
+    <div id="resultatHtml" style="font-family: monospace" ></div>
+    <br>
+    <select id="colorChooser2" onchange="showDiv()">
+        <option selected value="indigo">Indigo</option>
+        <option value="red">Red</option>
+        <option value="lightblue">LightBlue</option>
+    
+    </select>
+    <br><br>
+    <div id="divb"></div>
+    <div id="resultatHtml2" style="font-family: monospace" ></div>
+
+    <script>
+        var sizeSlider1 = document.getElementById('sizeSlider1');
+        var sizeSlider2 = document.getElementById('sizeSlider2'); 
+        var divA = document.getElementById('diva');
+        var divB = document.getElementById('divb');
+        var colorChooser = document.getElementById('colorChooser');
+        var colorChooser2 = document.getElementById('colorChooser2');
+        var size = document.getElementById('size');
+
+
+        showDiv();
+    
+        function  showDiv() {
+            var sizeA = parseInt(sizeSlider1.value);
+            var sizeB = parseInt(sizeSlider2.value);
+            size.innerHTML = '';
+
+            var bgcA = 'background-color: ' + colorChooser.value + ';';
+            var heightA = 'height: ' + sizeSlider1.value + 'px;';
+            var widthA = 'width: ' + sizeSlider1.value + 'px;';
+            var styleA = 'style="' + heightA + widthA + bgcA + '"';
+            var arealA  = sizeA * sizeA; 
+            divA.innerHTML = '<div ' + styleA + '>' + 'Areal box A = ' + arealA + ' px' + '</div>';
+
+            var bgcB = 'background-color: ' + colorChooser2.value + ';';
+            var heightB = 'height: ' + sizeSlider2.value + 'px;';
+            var widthB = 'width: ' + sizeSlider2.value + 'px;';
+            var styleB = 'style="' + heightB + widthB + bgcB + '"';
+            var arealB  = sizeB * sizeB; 
+            divB.innerHTML = '<div ' + styleB + '>' + 'Areal box B = ' + arealB + ' px' + '</div>';
+
+            if (sizeA < sizeB) {
+                size.innerHTML = "Box B er større";
+            }
+
+            if (sizeA > sizeB) {
+                size.innerHTML = "Box A er større";
+            }
+
+            if (sizeA == sizeB) {
+                size.innerHTML = 'Boxene er like store';
+            }
+        }    
+
+    </script>
+</body>
+</html>
