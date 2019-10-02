@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
+    <title>Oppgave 9A</title>
     <style>
-        div.selected::before {
-            content: "🡆";
+        #size {
+            height: 20px;
         }
-        
-        div.selected::after {
-            content: "🡄";
-        }
-    </style>
     
-    <title>Document</title>
-
+    </style>
 </head>
 <body>
         <button id="buttonA" onclick="velgDiv('A')"> Div A</button>
@@ -20,63 +16,75 @@
         <p id="valgt">Du har valgt</p>
 
         <div id="size"> </div>
-    <input type="range" id="widthSlider" min="0" max="400" step="10" value="100" oninput="showDiv()">
-    <input type="range" id="heightSlider" min="0" max="400" step="10" value="100" oninput="showDiv()">
+    <input type="range" id="widthSlider" min="0" max="300" step="10" value="100" oninput="showDiv()">
+    <input type="range" id="heightSlider" min="0" max="300" step="10" value="100" oninput="showDiv()">
     <br>
     <br>
-   
 
-    <!-- <div id="A" onclick="velgDiv('A')" style="background-color: red">div A</div>
-    <br><br>
-    <div id="B" onclick="velgDiv('B')" style="background-color: blue">div B</div> -->
+    <!-- <select id="colorChooser" onchange="showDiv()">
+        <option value="lightgreen">Light green</option>
+        <option value="indigo">Indigo</option>
+        <option value="orange">Orange</option>
+        <option value="lightblue">Light blue</option>
+    </select> -->
 
-    <div id="A" style="background-color: red">div A</div>
     <br><br>
-    <div id="B" style="background-color: blue">div B</div>
+
+    <div id="A" style="background-color: red; width: 100px; height: 100px;">div A</div>
+    <br><br>
+    <div id="B" style="background-color: blue; width: 100px; height: 100px;">div B</div>
 
 
 
     <script>
         var divA = document.getElementById('A');
         var divB = document.getElementById('B');
-        
+
+        // var colorC = document.getElementById('colorChooser')
+
         var widthSlider = document.getElementById('widthSlider')
         var heightSlider = document.getElementById('heightSlider')
         var valgtDiv;
         var size = document.getElementById('size');
         velgDiv();
-
+        showDiv();
         function velgDiv (divBokstav) {
             document.getElementById('valgt').innerHTML = 'Du har valgt ' + divBokstav;
             valgtDiv = document.getElementById(divBokstav);
             console.log(divBokstav)
-
+            
+            widthSlider.value = parseInt(valgtDiv.style.width);
+            heightSlider.value = parseInt(valgtDiv.style.height);
             
         }
-        showDiv();
+       
         function showDiv () {
             var bredde = widthSlider.value;
             var høyde = heightSlider.value;
             var arealSum = widthSlider.value * heightSlider.value;
 
-            // widthSlider.value = parseInt(div.style.width);
-            // heightSlider.value = parseInt(div.style.height);
+            // var BGC = 'background-color: ' + colorC.value + ';';
+
+
             
             valgtDiv.style.width = bredde + 'px';
             valgtDiv.style.height = høyde + 'px';
             valgtDiv.innerHTML = arealSum;
-            
-            console.log('asd'+divA.value)
 
-            if (divA.innerHTML < divB.innerHTML) {
+            
+            
+            console.log('A '+divA.innerText)
+            console.log('B '+divB.innerText)
+
+            if (parseInt(divA.innerText) < parseInt(divB.innerText)) {
                 size.innerHTML = "Box B er større";
             }
             
-            if (divA.innerHTML > divB.innerHTML) {
+            if (parseInt(divA.innerText) > parseInt(divB.innerText)) {
                 size.innerHTML = "Box A er større";
             }
             
-            if (divA.innerHTML == divB.innerHTML) {
+            if (parseInt(divA.innerText) == parseInt(divB.innerText)) {
                 size.innerHTML = 'Boxene er like store';
             }
 
