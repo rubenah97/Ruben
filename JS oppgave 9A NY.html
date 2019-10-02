@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        div.selected::before {
+            content: "🡆";
+        }
+        
+        div.selected::after {
+            content: "🡄";
+        }
+    </style>
+    
+    <title>Document</title>
+
+</head>
+<body>
+        <button id="buttonA" onclick="velgDiv('A')"> Div A</button>
+        <button id="buttonB" onclick="velgDiv('B')"> Div B</button><br />
+        <p id="valgt">Du har valgt</p>
+
+        <div id="size"> </div>
+    <input type="range" id="widthSlider" min="0" max="400" step="10" value="100" oninput="showDiv()">
+    <input type="range" id="heightSlider" min="0" max="400" step="10" value="100" oninput="showDiv()">
+    <br>
+    <br>
+   
+
+    <!-- <div id="A" onclick="velgDiv('A')" style="background-color: red">div A</div>
+    <br><br>
+    <div id="B" onclick="velgDiv('B')" style="background-color: blue">div B</div> -->
+
+    <div id="A" style="background-color: red">div A</div>
+    <br><br>
+    <div id="B" style="background-color: blue">div B</div>
+
+
+
+    <script>
+        var divA = document.getElementById('A');
+        var divB = document.getElementById('B');
+        
+        var widthSlider = document.getElementById('widthSlider')
+        var heightSlider = document.getElementById('heightSlider')
+        var valgtDiv;
+        var size = document.getElementById('size');
+        velgDiv();
+
+        function velgDiv (divBokstav) {
+            document.getElementById('valgt').innerHTML = 'Du har valgt ' + divBokstav;
+            valgtDiv = document.getElementById(divBokstav);
+            console.log(divBokstav)
+
+            
+        }
+        showDiv();
+        function showDiv () {
+            var bredde = widthSlider.value;
+            var høyde = heightSlider.value;
+            var arealSum = widthSlider.value * heightSlider.value;
+
+            // widthSlider.value = parseInt(div.style.width);
+            // heightSlider.value = parseInt(div.style.height);
+            
+            valgtDiv.style.width = bredde + 'px';
+            valgtDiv.style.height = høyde + 'px';
+            valgtDiv.innerHTML = arealSum;
+            
+            console.log('asd'+divA.value)
+
+            if (divA.innerHTML < divB.innerHTML) {
+                size.innerHTML = "Box B er større";
+            }
+            
+            if (divA.innerHTML > divB.innerHTML) {
+                size.innerHTML = "Box A er større";
+            }
+            
+            if (divA.innerHTML == divB.innerHTML) {
+                size.innerHTML = 'Boxene er like store';
+            }
+
+        }
+
+
+    </script>
+
+</body>
+</html>
