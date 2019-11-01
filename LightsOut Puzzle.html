@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Jada</title>
+	<style>
+        table {
+            position: relative;
+            left: 699px;
+        }
+		body {
+			background-color: cyan
+		}
+
+		.top {
+			margin: auto;
+			Padding: 10px;
+			border: solid red 2px;
+			width: 300px;
+			background-color: orange
+		}
+
+		.divx {
+			padding: 10px;
+			margin: 10px;
+			border: solid red 2px;
+			width: 75px;
+			height: 75px;
+			border-radius: 50%;
+			background-color: white
+		}
+
+		.divx:hover {
+			cursor: pointer;
+		}
+		
+		.lightOn {
+        background-color: yellow;
+  		}
+		#playAgain {
+			text-align: center;
+			position: relative;
+			left: 123px;
+			font-size: 25px;
+		}
+		
+		#playAgain:hover{
+			cursor: pointer;
+			color: blue;
+		}
+        div.førstPåLinje {
+            clear: left;
+        }
+	</style>
+</head>
+
+<body>
+    <h1 id="moves" class="top">Du har gjort 0 trekk</h1>
+    <div id="lys"></div>
+
+	<script>
+		var teller = 0;
+		var playAgain = document.getElementById('playAgain');
+		var moves = document.getElementById('moves');
+        var size = 5    
+        var html = '';
+
+		// turnOnRandom();
+        // function turnOnRandom() {
+        // var elementsList = document.getElementsByClassName("divx");
+        //     randomIndex = Math.floor(Math.random() * elementsList.length);
+        //     selectedElement = elementsList[randomIndex];
+		// 	selectedElement.classList.add('lightOn');
+		// 	playing = true;
+        // }
+        show();
+        function show() {
+            moves.innerHTML = 'Du har gjort ' + teller + ' trekk';
+        }
+            
+        for (var rowIndex = 0; rowIndex < size; rowIndex++) {
+            html += '<tr>';
+        for (var columnIndex = 0; columnIndex < size; columnIndex++) {
+            html += `<td onclick="trykk(this, ${rowIndex}, ${columnIndex})"class="divx"></td>`;
+        }
+        html += '</tr>';
+        }
+        html = '<table>' + html + '</table>';
+        document.getElementById('lys').innerHTML = html;
+            
+
+        
+		function trykk(element, rowIndex, columnIndex) {
+            teller++;
+		    element.classList.add('lightOn');
+            show();
+        }   
+        
+		function restart(){
+			window.location.reload();
+		}
+
+		
+	</script>
+</body>
+
+</html>
