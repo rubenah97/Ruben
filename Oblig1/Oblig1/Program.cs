@@ -8,32 +8,43 @@ namespace Oblig1
     {
         static void Main(string[] args)
         {
-            Persons Arne = new Persons(0,  "Arne",  "Fredriksen",  1982,  0);
-            Persons Jens = new Persons(1, "Jens", "Karlsen", 1992, 0);
-            Persons Ida = new Persons(2, "Ida", "Larsen", 2000, 0);
-            Persons Ludvig = new Persons(3, "", "Jensen", 0, 0);
-            Persons Per = new Persons(4, "Per", "", 0, 1990);
-            Persons Louise = new Persons(5, "Louise", "Fredriksen", 1950, 0);
-            Persons Carl = new Persons(6, "Carl", "Karlsen", 1948, 0);
-            Persons Espen = new Persons(7, "Espen", "Larsen", 1970, 0);
-            Persons Ellen = new Persons(8, "Ellen", "Larsen", 1969, 0);
-            Persons Ken = new Persons(9, "Ken", "Normann", 1920, 1992);
-            Persons Camilla = new Persons(10, "Camilla", "Normann", 1915, 1989);
+            var Arne = new Person(0,  "Arne",  "Fredriksen", 1982, null);
+            var Jens = new Person(1, "Jens", "Karlsen", 1992, null);
+            var Ida = new Person(2, "Ida", "Larsen", 2000, null);
+            var Ludvig = new Person(3, null, "Jensen", null, null);
+            var Per = new Person(4, "Per", null, null, 1990);
+            var Louise = new Person(5, "Louise", "Fredriksen", 1950, null);
+            var Carl = new Person(6, "Carl", "Karlsen", 1948, null);
+            var Espen = new Person(7, "Espen", "Larsen", 1970, null);
+            var Ellen = new Person(8, "Ellen", "Larsen", 1969, null);
+            var Ken = new Person(9, "Ken", "Normann", 1920, 1992);
+            var Camilla = new Person(10, "Camilla", "Normann", 1915, 1989);
+            var Sigurd = new Person(11, "Sigurd", "Normann", 1950, null);
+            var Kevin = new Person(12, "Kevin", "Fredriksen", 1940, null);
+            
 
             Arne.Mother = Louise;
+
             Ida.Father = Espen;
             Ida.Mother = Ellen;
+
             Carl.Father = Ken;
             Carl.Mother = Camilla;
-            Espen.Sister = Louise;
-            Ellen.Brother = Jens;
+
             Ken.Married = Camilla;
             Camilla.Married = Ken;
 
+            Sigurd.Father = Ken;
+            Sigurd.Mother = Camilla;
+
+            Louise.Father = Kevin;
+            Arne.Father = Kevin;
+
+
             
 
-            int AmountOfPeople = 11;
-            IPersonList[] personList = new IPersonList[AmountOfPeople];
+            int AmountOfPeople = 12;
+            Person[] personList = new Person[AmountOfPeople];
             personList[0] = Arne;
             personList[1] = Jens;
             personList[2] = Ida;
@@ -45,6 +56,7 @@ namespace Oblig1
             personList[8] = Ellen;
             personList[9] = Ken;
             personList[10] = Camilla;
+            personList[11] = Sigurd;
             var chosenPath = "";
             do
             {
@@ -69,12 +81,9 @@ namespace Oblig1
 
                 else if (chosenPath == "List" || chosenPath == "list")
                 {
-                    for (int i = 0; i < personList.Length; i++)
+                    foreach (var p in personList)
                     {
-                        personList[i].Id();
-                        personList[i].FirstName();
-                        personList[i].LastName();
-                        Console.WriteLine();
+                        p.ShowInList();
                     }
                 }
 
@@ -87,18 +96,38 @@ namespace Oblig1
                     {
                         Console.Write("Type in id from 0-" + (AmountOfPeople-1) + ": ");
                         success = int.TryParse(Console.ReadLine(), out typedId);
-                        //typedId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine();
+                        if (typedId < 0 || typedId > AmountOfPeople-1
+                            )
+                        {
+                            success = false;
+                        }
                         
                     }while (!success || typedId >= AmountOfPeople && typedId <= 0);
 
+                    var person = personList[typedId];
+                    person.Show();
                     Console.WriteLine();
-                    personList[typedId].Id();
-                    personList[typedId].FirstName();
-                    personList[typedId].LastName();
-                    personList[typedId].DateOfBirth();
-                    personList[typedId].YearOfDeath();
-                    personList[typedId].Relatives();
+                    Console.WriteLine("Children : ");
                     Console.WriteLine();
+                    foreach (var p in personList)
+                    {
+                        if (p.Father == person || p.Mother == person)
+                            p.ShowInList();
+                       
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Siblings: ");
+                    Console.WriteLine();
+                    foreach (var p in personList)
+                    {
+                        if (p != person &&
+                            (p.Father == person.Father && person.Father != null|| p.Mother == person.Mother && person.Father != null))
+                        {
+                            p.ShowInList();
+                        }
+                    }
 
                 }
                 else
